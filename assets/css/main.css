@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0; /* Menghilangkan margin default */
+    padding: 0; /* Menghilangkan padding default */
+    overflow-x: hidden; /* Menghindari overflow horizontal */
+  }
+  
+  html {
+    scroll-behavior: smooth; /* Memperhalus scroll */
+  }
