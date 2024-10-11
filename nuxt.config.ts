@@ -9,6 +9,8 @@ export default defineNuxtConfig({
       name: 'Inventory Log Form',
       short_name: 'ILF',
       description: 'Inventory Log Form',
+      theme_color: '#22325D',
+      background_color: '#22325D',
       icons: [
         {
           src: '/icon.png',
