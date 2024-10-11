@@ -10,7 +10,7 @@
     </button>
     <div class="bg-white rounded-t-lg h-screen py-5 px-7 mb-44">
       <form @submit.prevent="handleSubmit">
-        <Select label="Zona" v-model:value="form.zone" :options="zones" placeholder="Pilih Zona" />
+        <Select label="Zona" v-model:value="form.zone" :options="zones" search-label="Cari zona" placeholder="Pilih Zona" />
         <p v-if="errors.zone" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.zone }}</p>
 
         <div class="mt-5">
@@ -23,20 +23,20 @@
         </div>
         <p v-if="errors.level" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.level }}</p>
 
-        <Select label="Deskripsi" v-model:value="form.description" :options="products" placeholder="Deskripsi" />
+        <Select label="Deskripsi" v-model:value="form.description" search-label="Cari item/sku" :options="products" placeholder="Deskripsi" />
         <p v-if="errors.description" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.description }}</p>
 
         <div class="mt-5">
           <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
             >Expired</label
           >
-          <div class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-2">
+          <!-- <div class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-2"> -->
               <input
                 type="date"
                 v-model="form.expired"
-                class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block flex-1 w-full p-2 focus:outline-none"
+                class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
               />
-          </div>
+          <!-- </div> -->
         </div>
         <p v-if="errors.expired" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.expired }}</p>
 
@@ -177,3 +177,20 @@ onMounted(() => {
 })
 
 </script>
+<style scoped>
+.custom-date-input {
+  min-width: 100%;
+  height: 3em; /* Adjust the height as necessary */
+}
+
+/* Tambahkan padding agar terlihat lebih rapi */
+.custom-date-input::-webkit-datetime-edit {
+  padding-left: 10px; /* Sesuaikan sesuai kebutuhan */
+}
+input[type='date'], input[type='time'] {
+    -webkit-appearance: none;
+    isplay:block;
+    -moz-appearance: textfield;
+    min-height: 3em;
+}
+</style>

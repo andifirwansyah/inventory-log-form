@@ -4,15 +4,16 @@
       <div
         class="flex items-center border border-[#F1F1F1] bg-[#F1F1F1] rounded-md px-2 mt-0.5"
       >
-        <!-- <input
+        <input
           type="text"
           :placeholder="placeholder"
           v-model="selected"
           @focus="toggleDropdown(true)"
           @blur="handleInputBlur"
           class="block w-full bg-[#F1F1F1] p-3 focus:outline-none"
-        /> -->
-        <div @click="toggleDropdown(!isOpen)" class="w-full bg-[#F1F1F1] h-12 flex items-center">{{ value }}</div>
+          readonly
+        />
+        <!-- <div @click="toggleDropdown(!isOpen)" class="w-full bg-[#F1F1F1] h-12 flex items-center">{{ value }}</div> -->
         <svg
           v-if="isOpen"
           xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +49,7 @@
         <div class="p-2">
           <input
             type="text"
-            placeholder="Cari Zona..."
+            :placeholder="searchLabel"
             v-model="search"
             @focus="toggleDropdown(true)"
             class="block w-full border border-gray-300 rounded-md p-2 focus:outline-none"
@@ -91,7 +92,11 @@
     value: {
       type: String,
       required: true
-    }
+    },
+    searchLabel: {
+      type: String,
+      required: true
+    },
   });
 
   const emit = defineEmits(['update:value']);
