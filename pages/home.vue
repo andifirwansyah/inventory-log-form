@@ -1,9 +1,9 @@
 <template>
   <div>
     <button class="flex items-center rounded-b-xl space-x-4 px-8 py-5 sticky top-0 z-10 bg-bluemary w-full">
-      <!-- <div class="bg-white w-10 h-10 rounded-lg flex items-center justify-center">
+      <button type="button" @click="handleFinish" class="bg-white w-10 h-10 rounded-lg flex items-center justify-center">
         <img src="/icon/back.png" class="w-5 h-5" />
-      </div> -->
+      </button>
       <div class="font-inter text-white font-semibold text-2xl">
         Inventory Log Form
       </div>
