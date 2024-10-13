@@ -1,6 +1,7 @@
 <template>
     <div class="mx-auto lg:max-w-sm w-full min-h-screen bg-white">
         <slot />
+        <div class="w-full h-[6.5rem] bg-white"></div>
         <div class="h-[4.5rem] bg-bluemary fixed z-10 bottom-0 lg:max-w-sm w-full rounded-t-xl mt-20">
           <div class="px-10 h-full grid grid-cols-2 ">
             <div v-for="(link, index) in links" :key="index" class="h-full flex items-center justify-center">

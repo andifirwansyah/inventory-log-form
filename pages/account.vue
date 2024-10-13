@@ -7,8 +7,8 @@
         Inventory Log Form
       </div>
     </button>
-    <div class="bg-white rounded-t-lg h-screen py-5 px-7 relative">
-      <button @click="handleLogout" class="border border-red-700 bg-red-700 py-3 rounded-lg absolute w-4/5 mx-auto bottom-32 left-0 right-0">
+    <div class="bg-white h-screen rounded-t-lg py-5 px-7 relative">
+      <button @click="handleLogout" class="border border-red-700 bg-red-700 py-3 rounded-lg absolute w-4/5 mx-auto bottom-48 left-0 right-0">
         <span class="font-inter text-white font-semibold">Log Out</span>
       </button>
     </div>
