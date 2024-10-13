@@ -7,7 +7,7 @@
         <input
           type="text"
           :placeholder="placeholder"
-          v-model="selected"
+          :value="value"
           @focus="toggleDropdown(true)"
           @blur="handleInputBlur"
           class="block w-full bg-[#F1F1F1] p-3 focus:outline-none"

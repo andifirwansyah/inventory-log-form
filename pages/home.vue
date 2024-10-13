@@ -8,9 +8,22 @@
         Inventory Log Form
       </div>
     </button>
-    <div class="bg-white rounded-t-lg h-screen py-5 px-7 mb-44">
+    <div class="bg-white rounded-t-lg h-screen py-5 px-7 mb-80">
       <form @submit.prevent="handleSubmit">
-        <Select label="Zona" v-model:value="form.zone" :options="zones" search-label="Cari zona" placeholder="Pilih Zona" />
+
+        <div class="mt-5">
+          <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
+            >Location ID</label
+          >
+          <input
+            type="text"
+            v-model="form.location_id"
+            class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
+            placeholder="Location ID"
+          />
+        </div>
+
+        <!-- <Select label="Zona" v-model:value="form.zone" :options="zones" search-label="Cari zona" placeholder="Pilih Zona" />
         <p v-if="errors.zone" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.zone }}</p>
 
         <div class="mt-5">
@@ -21,32 +34,42 @@
             </button>
           </div>
         </div>
-        <p v-if="errors.level" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.level }}</p>
+        <p v-if="errors.level" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.level }}</p> -->
 
         <Select label="Deskripsi" v-model:value="form.description" search-label="Cari item/sku" :options="products" placeholder="Deskripsi" />
         <p v-if="errors.description" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.description }}</p>
+
+        <InputBarcode label="Barcode" v-model:value="form.barcode"/>
+        <p v-if="errors.barcode" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.barcode }}</p>
+
+        <div class="mt-5">
+          <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
+            >Batch</label
+          >
+          <input
+            type="text"
+            v-model="form.batch"
+            class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
+            placeholder="Batch"
+          />
+        </div>
 
         <div class="mt-5">
           <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
             >Expired</label
           >
-          <!-- <div class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-2"> -->
-              <input
-                type="date"
-                v-model="form.expired"
-                class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
-              />
-          <!-- </div> -->
+          <input
+            type="date"
+            v-model="form.expired"
+            class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
+          />
         </div>
         <p v-if="errors.expired" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.expired }}</p>
 
-        <InputBarcode label="Barcode" v-model:value="form.barcode"/>
-        <p v-if="errors.barcode" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.barcode }}</p>
-
-        <InputQty v-model:quantity="form.qty" />
+        <InputQty v-model:quantity="form.qty" label="Qty" />
         <p v-if="errors.qty" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.qty }}</p>
 
-        <div class="mt-5">
+        <!-- <div class="mt-5">
           <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
             >UOM</label
           >
@@ -57,15 +80,37 @@
             placeholder="UOM"
           />
         </div>
+        <p v-if="errors.uom" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.uom }}</p> -->
+        <Select label="Condition" v-model:value="form.condition" search-label="Cari condition" :options="conditions" placeholder="Condition" />
+        <p v-if="errors.condition" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.condition }}</p>
+
+        <Select label="UOM" v-model:value="form.uom" search-label="Cari uom" :options="uoms" placeholder="UOM" />
         <p v-if="errors.uom" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.uom }}</p>
 
+        <InputQty v-model:quantity="form.uom_qty" label="UOM Qty" />
+        <p v-if="errors.uom_qty" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.uom_qty }}</p>
+
+        <div class="mt-5">
+          <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
+            >Total Qty</label
+          >
+          <input
+            type="text"
+            :value="form.qty * form.uom_qty"
+            class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
+            placeholder="UOM"
+            readonly
+          />
+        </div>
+
         <div class="grid grid-cols-2 gap-5 mt-10 bg-white">
-          <button :disabled="loading" type="button" @click="handleCancel" class="bg-white border border-bluemary w-full py-3 rounded-lg disabled:opacity-25">
-              <span class="font-inter text-bluemary font-semibold">Cancel</span>
+          <button type="submit" :disabled="loading" class="bg-white border border-bluemary w-full py-3 rounded-lg disabled:opacity-25">
+            <span v-if="loading" class="font-inter text-white font-semibold">Loading...</span>
+            <span v-else class="font-inter text-bluemary font-semibold">Save</span>
           </button>
-          <button type="submit" :disabled="loading" class="bg-bluemary border border-bluemary w-full py-3 rounded-lg disabled:opacity-25">
+          <button type="button" @click="handleFinish" :disabled="loading" class="bg-bluemary border border-bluemary w-full py-3 rounded-lg disabled:opacity-25">
               <span v-if="loading" class="font-inter text-white font-semibold">Loading...</span>
-              <span v-else class="font-inter text-white font-semibold">Save</span>
+              <span v-else class="font-inter text-white font-semibold">Finish</span>
           </button>
         </div>
       </form>
@@ -81,36 +126,33 @@ definePageMeta({
 import { validationSchema } from '~/validation/validationSchema';
 
 const supabase = useSupabaseClient();
-const zones = ref([
-  {
-    label: "Zona 1",
-    value: 1,
-  },
-  {
-    label: "Zona 2",
-    value: 2,
-  },
-  {
-    label: "Zona 3",
-    value: 3,
-  },
-  {
-    label: "Zona 4",
-    value: 4,
-  },
-]);
+
+const uoms = [
+  { label: 'PCS', value: 'pcs' },
+  { label: 'BOX', value: 'box' }
+];
+
+const conditions = [
+  { label: 'GOOD', value: 'good' },
+  { label: 'DAMAGE', value: 'damage' },
+  { label: 'QR', value: 'qr' }
+];
+
 const products = ref([]);
 const toastRef = ref(null);
 const user = useSupabaseUser();
 
 const form = ref({
-  zone: '',
-  level: null,
+  location_id: '',
   description: '',
-  expired: null,
   barcode: '',
+  batch: '',
+  expired: null,
   qty: null,
+  condition: '',
   uom: '',
+  uom_qty: null,
+  total_qty: null,
   username: user?.value?.email
 });
 
@@ -132,12 +174,21 @@ const handleSubmit = async () => {
   loading.value = true;
   try {
     errors.value = {};
-    
-    await validationSchema.validate(form.value, { abortEarly: false });
-    
-    // console.log('Form submitted:', form.value);
 
-    const {data, error} = await supabase.from('stocks').insert(form.value);
+    const formattedDate = formatDate(form.value.expired);
+    form.value.expired = formattedDate;
+
+    await validationSchema.validate(form.value, { abortEarly: false });
+
+
+    const prevData = JSON.parse(localStorage.getItem('formData'));
+    form.value.total_qty = form.value.qty * form.value.uom_qty;
+    const payload = {...form.value, ...prevData}
+
+
+    // console.log('Form submitted:', payload);
+
+    const {data, error} = await supabase.from('stocks').insert(payload);
     if(error){
       console.log(error);
       alert('Gagal menyimpan data. terjadi kesalahan');
@@ -145,13 +196,16 @@ const handleSubmit = async () => {
     }
     if (toastRef.value) {
       toastRef.value.showToast('Data berhasil disimpan!', 3000);
-      form.value.zone = null
-      form.value.level = null
-      form.value.description = null
-      form.value.expired = null
-      form.value.barcode = null
-      form.value.qty = null
-      form.value.uom = null
+      form.value.location_id = ''
+      form.value.description = ''
+      form.value.barcode = ''
+      form.value.batch = ''
+      form.value.expired = ''
+      form.value.qty = ''
+      form.value.condition = ''
+      form.value.uom = ''
+      form.value.uom_qty = ''
+      form.value.total_qty = ''
     }
   } catch (validationError) {
     validationError.inner.forEach(err => {
@@ -162,14 +216,20 @@ const handleSubmit = async () => {
   }
 };
 
-const handleCancel = () => {
-  form.value.zone = null
-  form.value.level = null
-  form.value.description = null
-  form.value.expired = null
-  form.value.barcode = null
-  form.value.qty = null
-  form.value.uom = null
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+
+  const monthOptions = { month: 'short' };
+  const yearOptions = { year: '2-digit' };
+
+  const month = date.toLocaleDateString('en-US', monthOptions).replace(' ', '');
+  const year = date.toLocaleDateString('en-US', yearOptions).replace(' ', '');
+
+  return `${month}-${year}`;
+};
+const handleFinish = () => {
+  localStorage.clear();
+  navigateTo('/main');
 };
 
 onMounted(() => {

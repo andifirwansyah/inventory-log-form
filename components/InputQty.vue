@@ -1,6 +1,6 @@
 <template>
     <div class="mt-5">
-      <label class="text-[#7C7C7C] ml-1 font-inter font-medium">Qty</label>
+      <label class="text-[#7C7C7C] ml-1 font-inter font-medium">{{label}}</label>
       <div class="flex items-center border border-[#F1F1F1] bg-[#F1F1F1] rounded-md px-2 mt-0.5">
         <input
           type="number"
@@ -29,6 +29,10 @@
   const props = defineProps({
     quantity: {
       type: Number,
+      required: true
+    },
+    label: {
+      type: String,
       required: true
     }
   });

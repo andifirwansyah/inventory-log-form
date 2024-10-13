@@ -5,6 +5,29 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
     // console.log("isAuthenticated => ", authStore.isAuthenticated);
 
+    if (process.client) {
+      const formData = localStorage.getItem('formData');
+
+      if (!formData && to.path === '/home') {
+        return navigateTo('/main');
+      }
+    }
+
+    if (process.client) {
+      const formData = localStorage.getItem('formData');
+
+      if (formData && to.path === '/main') {
+        return navigateTo('/home');
+      }
+    }
+
+    if (to.path === "/main" && !authStore.isAuthenticated) {
+      // return navigateTo("/");
+      if(process.client){
+        return window.location.href = '/';
+      }
+    }
+
     if (to.path === "/home" && !authStore.isAuthenticated) {
       // return navigateTo("/");
       if(process.client){
