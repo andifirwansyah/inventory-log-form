@@ -1,7 +1,7 @@
 <template>
   <div>
     <button class="flex items-center rounded-b-xl space-x-4 px-8 py-5 sticky top-0 z-10 bg-bluemary w-full">
-      <button type="button" @click="handleFinish" class="bg-white w-10 h-10 rounded-lg flex items-center justify-center">
+      <button type="button" @click="handleBack" class="bg-white w-10 h-10 rounded-lg flex items-center justify-center">
         <img src="/icon/back.png" class="w-5 h-5" />
       </button>
       <div class="font-inter text-white font-semibold text-2xl">
@@ -52,6 +52,7 @@
             class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
             placeholder="Batch"
           />
+          <p v-if="errors.batch" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.batch }}</p>
         </div>
 
         <div class="mt-5">
@@ -108,7 +109,7 @@
             <span v-if="loading" class="font-inter text-white font-semibold">Loading...</span>
             <span v-else class="font-inter text-bluemary font-semibold">Save</span>
           </button>
-          <button type="button" @click="handleFinish" :disabled="loading" class="bg-bluemary border border-bluemary w-full py-3 rounded-lg disabled:opacity-25">
+          <button type="submit" @click="handleFinish" :disabled="loading" class="bg-bluemary border border-bluemary w-full py-3 rounded-lg disabled:opacity-25">
               <span v-if="loading" class="font-inter text-white font-semibold">Loading...</span>
               <span v-else class="font-inter text-white font-semibold">Finish</span>
           </button>
@@ -227,7 +228,56 @@ const formatDate = (dateString) => {
 
   return `${month}-${year}`;
 };
-const handleFinish = () => {
+const handleFinish = async () => {
+
+  loading.value = true;
+  try {
+    errors.value = {};
+
+    const formattedDate = formatDate(form.value.expired);
+    form.value.expired = formattedDate;
+
+    await validationSchema.validate(form.value, { abortEarly: false });
+
+
+    const prevData = JSON.parse(localStorage.getItem('formData'));
+    form.value.total_qty = form.value.qty * form.value.uom_qty;
+    const payload = {...form.value, ...prevData}
+
+
+    // console.log('Form submitted:', payload);
+
+    const {data, error} = await supabase.from('stocks').insert(payload);
+    if(error){
+      console.log(error);
+      alert('Gagal menyimpan data. terjadi kesalahan');
+      return;
+    }
+    
+    if (toastRef.value) {
+      toastRef.value.showToast('Data berhasil disimpan!', 3000);
+      form.value.location_id = ''
+      form.value.description = ''
+      form.value.barcode = ''
+      form.value.batch = ''
+      form.value.expired = ''
+      form.value.qty = ''
+      form.value.condition = ''
+      form.value.uom = ''
+      form.value.uom_qty = ''
+      form.value.total_qty = ''
+    }
+    localStorage.clear();
+    navigateTo('/main');
+  } catch (validationError) {
+    validationError.inner.forEach(err => {
+      errors.value[err.path] = err.message;
+    });
+  } finally {
+    loading.value = false;
+  }
+};
+const handleBack = () => {
   localStorage.clear();
   navigateTo('/main');
 };
