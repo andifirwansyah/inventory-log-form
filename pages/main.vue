@@ -42,22 +42,14 @@ const teams = ref([
 ]);
 
 const warehouses = [
-  { label: 'A', value: 'A' },
-  { label: 'B', value: 'B' },
-  { label: 'C', value: 'C' },
-  { label: 'D', value: 'D' },
-  { label: 'E', value: 'E' },
-  { label: 'F', value: 'F' },
+  { label: 'Warehouse A - General Trade', value: 'General Trade' },
+  { label: 'Warehouse B - Modern Trade', value: 'Modern Trade' },
+  { label: 'Warehouse C - Kosmetik 1', value: 'Kosmetik 1' },
+  { label: 'Warehouse D - Kosmetik 2', value: 'Kosmetik 2' },
 ];
 
 const levels = [
   { label: 'ALL', value: 'ALL' },
-  { label: 'A', value: 'A' },
-  { label: 'B', value: 'B' },
-  { label: 'C', value: 'C' },
-  { label: 'D', value: 'D' },
-  { label: 'E', value: 'E' },
-  { label: 'F', value: 'F' },
 ];
 
 const form = ref({

@@ -129,8 +129,30 @@ import { validationSchema } from '~/validation/validationSchema';
 const supabase = useSupabaseClient();
 
 const uoms = [
-  { label: 'PCS', value: 'pcs' },
-  { label: 'BOX', value: 'box' }
+  { label: 'BAG-BAG', value: 'BAG' },
+  { label: 'BAL-BAL', value: 'BAL' },
+  { label: 'BOX-BOX', value: 'BOX' },
+  { label: 'BTL-BOTOL', value: 'BOTOL' },
+  { label: 'CAN-CAN', value: 'CAN' },
+  { label: 'CTN-CARTON', value: 'CARTON' },
+  { label: 'CUP-CUP', value: 'CUP' },
+  { label: 'HGR-HANGER', value: 'HANGER' },
+  { label: 'INNER-Inner Box', value: 'Inner Box' },
+  { label: 'JAR-JAR', value: 'JAR' },
+  { label: 'JRG-JIRIGEN', value: 'JIRIGEN' },
+  { label: 'LSN-LUSIN', value: 'LUSIN' },
+  { label: 'PAC-PACK', value: 'PACK' },
+  { label: 'PAK-PACK', value: 'PACK' },
+  { label: 'PALLET-PALLET', value: 'PALLET' },
+  { label: 'PCH-POUCH', value: 'POUCH' },
+  { label: 'PCS-PCS', value: 'PCS' },
+  { label: 'PKT-PAKET', value: 'PAKET' },
+  { label: 'RCG-RENCENG', value: 'RENCENG' },
+  { label: 'SAK-SAK', value: 'SAK' },
+  { label: 'SCH-SACHET', value: 'SACHET' },
+  { label: 'SCT-SACHET', value: 'SACHET' },
+  { label: 'STR-STRIP', value: 'STRIP' },
+  { label: 'ZAK-ZAK', value: 'ZAK' }
 ];
 
 const conditions = [
