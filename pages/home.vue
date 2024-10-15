@@ -8,7 +8,7 @@
         Inventory Log Form
       </div>
     </button>
-    <div class="bg-white rounded-t-lg h-screen py-5 px-7 mb-80">
+    <div class="bg-white rounded-t-lg py-5 px-7 mb-20">
       <form @submit.prevent="handleSubmit">
 
         <div class="mt-5">

@@ -5,7 +5,7 @@
                 Inventory Log Form
             </div>
         </button>
-        <div class="bg-white rounded-t-lg h-screen py-5 px-7">
+        <div class="bg-white rounded-t-lg py-5 px-7 mb-32">
             <form @submit.prevent="handleSubmit">
                 <Select label="Team Count" v-model:value="form.team_count" :options="teams" search-label="Cari team" placeholder="Pilih Team Count" />
                 <p v-if="errors.team_count" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.team_count }}</p>

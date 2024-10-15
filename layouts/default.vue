@@ -1,8 +1,7 @@
 <template>
-    <div class="mx-auto lg:max-w-sm w-full min-h-screen bg-white">
+    <div class="mx-auto lg:max-w-sm w-full min-h-screen bg-white relative">
         <slot />
-        <div class="w-full h-[6.5rem] bg-white"></div>
-        <div class="h-[4.5rem] bg-bluemary fixed z-10 bottom-0 lg:max-w-sm w-full rounded-t-xl mt-20">
+        <div :class="isMainPage ? 'fixed' : 'sticky'" class="h-[4.5rem] bg-bluemary bottom-0 lg:max-w-sm w-full rounded-t-xl">
           <div class="px-10 h-full grid grid-cols-2 ">
             <div v-for="(link, index) in links" :key="index" class="h-full flex items-center justify-center">
               <NuxtLink :to="link.path">
@@ -33,6 +32,8 @@ const links = ref([
 ])
 
 const route = useRoute();
+
+const isMainPage = computed(() => route.path === '/main');
 
 const isActive = computed(() => {
   const activeIndex = links.value.findIndex(link => 
