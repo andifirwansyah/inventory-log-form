@@ -49,7 +49,7 @@ const warehouses = [
 ];
 
 const levels = [
-  { label: 'ALL', value: 'ALL' },
+  { label: 'ALL', value: 'all' },
 ];
 
 const form = ref({

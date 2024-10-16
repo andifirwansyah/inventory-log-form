@@ -242,14 +242,13 @@ const handleSubmit = async () => {
 const formatDate = (dateString) => {
   const date = new Date(dateString);
 
-  const monthOptions = { month: 'short' };
-  const yearOptions = { year: '2-digit' };
+  const day = date.toLocaleDateString('en-GB', { day: '2-digit' });
+  const month = date.toLocaleDateString('en-GB', { month: '2-digit' });
+  const year = date.toLocaleDateString('en-GB', { year: '2-digit' });
 
-  const month = date.toLocaleDateString('en-US', monthOptions).replace(' ', '');
-  const year = date.toLocaleDateString('en-US', yearOptions).replace(' ', '');
-
-  return `${month}-${year}`;
+  return `${day}/${month}/${year}`;
 };
+
 const handleFinish = async () => {
 
   loading.value = true;
@@ -258,7 +257,7 @@ const handleFinish = async () => {
 
     const formattedDate = formatDate(form.value.expired);
     form.value.expired = formattedDate;
-
+    
     await validationSchema.validate(form.value, { abortEarly: false });
 
 
