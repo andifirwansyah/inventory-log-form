@@ -193,6 +193,13 @@ const handleSubmit = async () => {
       alert('Gagal menyimpan data. terjadi kesalahan');
       return;
     }
+    // router.afterEach(() => {
+    //   window.scrollTo(0, 0);
+    // });
+    if (process.client) {
+      // Scroll ke atas saat halaman berubah
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     if (toastRef.value) {
       toastRef.value.showToast('Data berhasil disimpan!', 3000);
       form.value.location_id = ''
@@ -206,9 +213,6 @@ const handleSubmit = async () => {
       form.value.uom_qty = ''
       form.value.total_qty = ''
     }
-    router.afterEach(() => {
-      window.scrollTo(0, 0);
-    });
   } catch (validationError) {
     validationError.inner.forEach(err => {
       errors.value[err.path] = err.message;
