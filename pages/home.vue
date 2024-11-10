@@ -22,27 +22,14 @@
             placeholder="Location ID"
           />
         </div>
-
-        <!-- <Select label="Zona" v-model:value="form.zone" :options="zones" search-label="Cari zona" placeholder="Pilih Zona" />
-        <p v-if="errors.zone" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.zone }}</p>
-
-        <div class="mt-5">
-          <label class="text-[#7C7C7C] ml-1 font-inter font-medium">Level</label>
-          <div class="grid grid-cols-3 gap-4 mt-0.5">
-            <button type="button" v-for="(item, index) in levels" :key="index" @click="form.level = item" :class="form.level === item ? 'bg-bluemary' : 'bg-[#7C7C7C]'" class="w-full h-14 rounded-lg flex items-center justify-center">
-              <span class="text-white font-inter font-medium">{{item}}</span>
-            </button>
-          </div>
-        </div>
-        <p v-if="errors.level" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.level }}</p> -->
-
-        <Select label="Deskripsi" v-model:value="form.description" search-label="Cari item/sku" :options="products" placeholder="Deskripsi" />
+        
+        <Select label="Deskripsi" v-model:value="form.description" :is-barcode="true" search-label="Cari item/sku" :options="products" placeholder="Deskripsi" />
         <p v-if="errors.description" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.description }}</p>
 
         <InputBarcode label="Barcode" v-model:value="form.barcode"/>
         <p v-if="errors.barcode" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.barcode }}</p>
 
-        <div class="mt-5">
+        <!-- <div class="mt-5">
           <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
             >Batch</label
           >
@@ -53,7 +40,7 @@
             placeholder="Batch"
           />
           <p v-if="errors.batch" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.batch }}</p>
-        </div>
+        </div> -->
 
         <div class="mt-5">
           <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
@@ -70,18 +57,6 @@
         <InputQty v-model:quantity="form.qty" label="Qty" />
         <p v-if="errors.qty" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.qty }}</p>
 
-        <!-- <div class="mt-5">
-          <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
-            >UOM</label
-          >
-          <input
-            type="text"
-            v-model="form.uom"
-            class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
-            placeholder="UOM"
-          />
-        </div>
-        <p v-if="errors.uom" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.uom }}</p> -->
         <Select label="Condition" v-model:value="form.condition" search-label="Cari condition" :options="conditions" placeholder="Condition" />
         <p v-if="errors.condition" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.condition }}</p>
 
@@ -127,6 +102,7 @@ definePageMeta({
 import { validationSchema } from '~/validation/validationSchema';
 
 const supabase = useSupabaseClient();
+const router = useRouter();
 
 const uoms = [
   { label: 'BAG-BAG', value: 'BAG' },
@@ -169,7 +145,7 @@ const form = ref({
   location_id: '',
   description: '',
   barcode: '',
-  batch: '',
+  // batch: '',
   expired: null,
   qty: null,
   condition: '',
@@ -222,7 +198,7 @@ const handleSubmit = async () => {
       form.value.location_id = ''
       form.value.description = ''
       form.value.barcode = ''
-      form.value.batch = ''
+      // form.value.batch = ''
       form.value.expired = ''
       form.value.qty = ''
       form.value.condition = ''
@@ -230,6 +206,9 @@ const handleSubmit = async () => {
       form.value.uom_qty = ''
       form.value.total_qty = ''
     }
+    router.afterEach(() => {
+      window.scrollTo(0, 0);
+    });
   } catch (validationError) {
     validationError.inner.forEach(err => {
       errors.value[err.path] = err.message;
@@ -280,7 +259,7 @@ const handleFinish = async () => {
       form.value.location_id = ''
       form.value.description = ''
       form.value.barcode = ''
-      form.value.batch = ''
+      // form.value.batch = ''
       form.value.expired = ''
       form.value.qty = ''
       form.value.condition = ''
