@@ -128,7 +128,8 @@ const uoms = [
   { label: 'SCH-SACHET', value: 'SACHET' },
   { label: 'SCT-SACHET', value: 'SACHET' },
   { label: 'STR-STRIP', value: 'STRIP' },
-  { label: 'ZAK-ZAK', value: 'ZAK' }
+  { label: 'ZAK-ZAK', value: 'ZAK' },
+  { label: 'BND-BUNDLE', value: 'BUNDLE' }
 ];
 
 const conditions = [

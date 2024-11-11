@@ -44,8 +44,8 @@ const teams = ref([
 const warehouses = [
   { label: 'Warehouse A - General Trade', value: 'General Trade' },
   { label: 'Warehouse B - Modern Trade', value: 'Modern Trade' },
-  { label: 'Warehouse C - Kosmetik 1', value: 'Kosmetik 1' },
-  { label: 'Warehouse D - Kosmetik 2', value: 'Kosmetik 2' },
+  { label: 'Warehouse C - Bioaqua', value: 'Bioaqua' },
+  { label: 'Warehouse D - Hanasui', value: 'Hanasui' },
 ];
 
 const levels = [
