@@ -39,6 +39,11 @@ const teams = ref([
   { label: 'Team H', value: 'Team H' },
   { label: 'Team I', value: 'Team I' },
   { label: 'Team J', value: 'Team J' },
+  { label: 'Team K', value: 'Team K' },
+  { label: 'Team L', value: 'Team L' },
+  { label: 'Team M', value: 'Team M' },
+  { label: 'Team N', value: 'Team N' },
+  { label: 'Team O', value: 'Team O' },
 ]);
 
 const warehouses = [
@@ -50,6 +55,11 @@ const warehouses = [
 
 const levels = [
   { label: 'ALL', value: 'all' },
+  { label: 'Level A', value: 'A' },
+  { label: 'Level B', value: 'B' },
+  { label: 'Level C', value: 'C' },
+  { label: 'Level D', value: 'D' },
+  { label: 'Cabinet', value: 'cabinet' },
 ];
 
 const form = ref({
