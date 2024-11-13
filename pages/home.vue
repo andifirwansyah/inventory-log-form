@@ -49,6 +49,7 @@
           <input
             type="date"
             v-model="form.expired"
+            placeholder="dd/mm/yyyy"
             class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
           />
         </div>
