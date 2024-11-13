@@ -23,7 +23,7 @@
           />
         </div>
         
-        <Select label="Deskripsi" v-model:value="form.description" :is-barcode="true" search-label="Cari item/sku" :options="products" placeholder="Deskripsi" />
+        <InputSelect @search="handleSearch" label="Deskripsi" v-model:value="form.description" :is-barcode="true" search-label="Cari item/sku" :options="products" placeholder="Deskripsi" />
         <p v-if="errors.description" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.description }}</p>
 
         <InputBarcode label="Barcode" v-model:value="form.barcode"/>
@@ -164,6 +164,29 @@ const levels = ref(['Level 1', 'Level 2', 'Level 3'])
 const fetchProducts = async () => {
   const {data, error} = await supabase.from('master_products').select('*');
   if(!error){
+    console.log(data.length);
+    products.value = data.map(v => ({
+      label: v.sku + '-' + v.name,
+      value: v.name,
+    }));
+  }
+}
+
+const handleSearch = async (query) => {
+  if (query.trim() === '') {
+    fetchProducts();
+    return
+  }
+  
+  // Fetch data from Supabase based on the query
+  const { data, error } = await supabase
+    .from('master_products')
+    .select('*')
+    .ilike('sku', `%${query}%`) // Adjust 'column_name' to match your database column
+
+  if (error) {
+    console.error('Error fetching data:', error)
+  } else {
     products.value = data.map(v => ({
       label: v.sku + '-' + v.name,
       value: v.name,
