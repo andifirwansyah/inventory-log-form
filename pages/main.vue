@@ -29,9 +29,9 @@ definePageMeta({
 });
 
 const teams = ref([
-  { label: 'Team 1', value: 'Team 1' },
-  { label: 'Team 2', value: 'Team 2' },
-  { label: 'Team 3', value: 'Team 3' },
+  { label: 'Count 1', value: 'Count 1' },
+  { label: 'Count 2', value: 'Count 2' },
+  { label: 'Count 3', value: 'Count 3' },
 ]);
 // const teams = ref([
 //   { label: 'Team A', value: 'Team A' },
