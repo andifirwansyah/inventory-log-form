@@ -29,22 +29,27 @@ definePageMeta({
 });
 
 const teams = ref([
-  { label: 'Team A', value: 'Team A' },
-  { label: 'Team B', value: 'Team B' },
-  { label: 'Team C', value: 'Team C' },
-  { label: 'Team D', value: 'Team D' },
-  { label: 'Team E', value: 'Team E' },
-  { label: 'Team F', value: 'Team F' },
-  { label: 'Team G', value: 'Team G' },
-  { label: 'Team H', value: 'Team H' },
-  { label: 'Team I', value: 'Team I' },
-  { label: 'Team J', value: 'Team J' },
-  { label: 'Team K', value: 'Team K' },
-  { label: 'Team L', value: 'Team L' },
-  { label: 'Team M', value: 'Team M' },
-  { label: 'Team N', value: 'Team N' },
-  { label: 'Team O', value: 'Team O' },
+  { label: 'Team 1', value: 'Team 1' },
+  { label: 'Team 2', value: 'Team 2' },
+  { label: 'Team 3', value: 'Team 3' },
 ]);
+// const teams = ref([
+//   { label: 'Team A', value: 'Team A' },
+//   { label: 'Team B', value: 'Team B' },
+//   { label: 'Team C', value: 'Team C' },
+//   { label: 'Team D', value: 'Team D' },
+//   { label: 'Team E', value: 'Team E' },
+//   { label: 'Team F', value: 'Team F' },
+//   { label: 'Team G', value: 'Team G' },
+//   { label: 'Team H', value: 'Team H' },
+//   { label: 'Team I', value: 'Team I' },
+//   { label: 'Team J', value: 'Team J' },
+//   { label: 'Team K', value: 'Team K' },
+//   { label: 'Team L', value: 'Team L' },
+//   { label: 'Team M', value: 'Team M' },
+//   { label: 'Team N', value: 'Team N' },
+//   { label: 'Team O', value: 'Team O' },
+// ]);
 
 const warehouses = [
   { label: 'Warehouse A - General Trade', value: 'General Trade' },
@@ -54,13 +59,18 @@ const warehouses = [
 ];
 
 const levels = [
-  { label: 'ALL', value: 'all' },
-  { label: 'Level A', value: 'A' },
-  { label: 'Level B', value: 'B' },
-  { label: 'Level C', value: 'C' },
-  { label: 'Level D', value: 'D' },
-  { label: 'Cabinet', value: 'cabinet' },
+  { label: 'Level A&B', value: 'Level A&B' },
+  { label: 'Level C&D', value: 'Level C&D' },
+  { label: 'Cabinet', value: 'Cabinet' },
 ];
+// const levels = [
+//   { label: 'ALL', value: 'all' },
+//   { label: 'Level A', value: 'A' },
+//   { label: 'Level B', value: 'B' },
+//   { label: 'Level C', value: 'C' },
+//   { label: 'Level D', value: 'D' },
+//   { label: 'Cabinet', value: 'cabinet' },
+// ];
 
 const form = ref({
   team_count: '',
