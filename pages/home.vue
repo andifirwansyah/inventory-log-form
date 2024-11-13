@@ -179,10 +179,14 @@ const handleSearch = async (query) => {
   }
   
   // Fetch data from Supabase based on the query
+  // const { data, error } = await supabase
+  //   .from('master_products')
+  //   .select('*')
+  //   .ilike('sku', `%${query}%`) // Adjust 'column_name' to match your database column
   const { data, error } = await supabase
-    .from('master_products')
-    .select('*')
-    .ilike('sku', `%${query}%`) // Adjust 'column_name' to match your database column
+      .from('master_products')
+      .select('*')
+      .or(`sku.ilike.%${query}%,name.ilike.%${query}%`)
 
   if (error) {
     console.error('Error fetching data:', error)
