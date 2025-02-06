@@ -65,10 +65,12 @@
           <li
             v-for="(option, index) in filteredOptions"
             :key="index"
-            @click="selectOption(option)"
-            class="cursor-pointer p-2 hover:bg-blue-100"
+            
           >
+          <button @click="selectOption(option)"
+          class="cursor-pointer p-2 hover:bg-blue-100 w-full text-left">
             {{ option.label }}
+          </button>
           </li>
         </ul>
   
@@ -155,6 +157,7 @@
     selectedOption.value = option.value;
     selected.value = option.label;
     emit('update:value', option.label);
+    console.log('selected option >> ', option.label)
     isOpen.value = false;
   };
   

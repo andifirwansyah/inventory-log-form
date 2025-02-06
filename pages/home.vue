@@ -26,8 +26,8 @@
         <InputSelect @search="handleSearch" label="Deskripsi" v-model:value="form.description" :is-barcode="true" search-label="Cari item/sku" :options="products" placeholder="Deskripsi" />
         <p v-if="errors.description" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.description }}</p>
 
-        <InputBarcode label="Barcode" v-model:value="form.barcode"/>
-        <p v-if="errors.barcode" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.barcode }}</p>
+        <!-- <InputBarcode label="Barcode" v-model:value="form.barcode"/>
+        <p v-if="errors.barcode" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.barcode }}</p> -->
 
         <!-- <div class="mt-5">
           <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
@@ -64,8 +64,20 @@
         <Select label="UOM" v-model:value="form.uom" search-label="Cari uom" :options="uoms" placeholder="UOM" />
         <p v-if="errors.uom" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.uom }}</p>
 
-        <InputQty v-model:quantity="form.uom_qty" label="UOM Qty" />
-        <p v-if="errors.uom_qty" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.uom_qty }}</p>
+        <!-- <InputQty v-model:quantity="form.uom_qty" label="UOM Qty" />
+        <p v-if="errors.uom_qty" class="font-inter text-xs text-red-500 mt-0.5">{{ errors.uom_qty }}</p> -->
+        <div class="mt-5">
+          <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
+            >UOM Qty</label
+          >
+          <input
+            type="text"
+            :value="form.uom_qty"
+            class="border border-[#F1F1F1] bg-[#F1F1F1] rounded-md block w-full p-3 focus:outline-none"
+            placeholder="UOM Qty"
+            readonly
+          />
+        </div>
 
         <div class="mt-5">
           <label class="text-[#7C7C7C] ml-1 font-inter font-medium"
@@ -146,13 +158,13 @@ const user = useSupabaseUser();
 const form = ref({
   location_id: '',
   description: '',
-  barcode: '',
+  barcode: null,
   // batch: '',
   expired: null,
   qty: null,
   condition: '',
   uom: '',
-  uom_qty: null,
+  uom_qty: 1,
   total_qty: null,
   username: user?.value?.email
 });
