@@ -52,10 +52,12 @@ const teams = ref([
 // ]);
 
 const warehouses = [
-  { label: 'Warehouse A - General Trade', value: 'General Trade' },
-  { label: 'Warehouse B - Modern Trade', value: 'Modern Trade' },
-  { label: 'Warehouse C - Bioaqua', value: 'Bioaqua' },
-  { label: 'Warehouse D - Hanasui', value: 'Hanasui' },
+
+{ label: 'Warehouse S - SIDOARJO', value: 'Sidoarjo' },
+  //{ label: 'Warehouse A - General Trade', value: 'General Trade' },
+  //{ label: 'Warehouse B - Modern Trade', value: 'Modern Trade' },
+  //{ label: 'Warehouse C - Bioaqua', value: 'Bioaqua' },
+ // { label: 'Warehouse D - Hanasui', value: 'Hanasui' },
 ];
 
 const levels = [
