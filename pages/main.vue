@@ -54,6 +54,7 @@ const teams = ref([
 const warehouses = [
 
 { label: 'Warehouse S - SIDOARJO', value: 'Sidoarjo' },
+  { label: 'Warehouse BNT01 - Buntaran', value: 'Buntaran' },
   //{ label: 'Warehouse A - General Trade', value: 'General Trade' },
   //{ label: 'Warehouse B - Modern Trade', value: 'Modern Trade' },
   //{ label: 'Warehouse C - Bioaqua', value: 'Bioaqua' },
