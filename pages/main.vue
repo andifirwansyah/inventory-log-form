@@ -51,15 +51,25 @@ const teams = ref([
 //   { label: 'Team O', value: 'Team O' },
 // ]);
 
-const warehouses = [
+const warehouses = ref([]);
 
-{ label: 'Warehouse S - SIDOARJO', value: 'Sidoarjo' },
-  { label: 'Warehouse BNT01 - Buntaran', value: 'Buntaran' },
-  //{ label: 'Warehouse A - General Trade', value: 'General Trade' },
-  //{ label: 'Warehouse B - Modern Trade', value: 'Modern Trade' },
-  //{ label: 'Warehouse C - Bioaqua', value: 'Bioaqua' },
- // { label: 'Warehouse D - Hanasui', value: 'Hanasui' },
-];
+const supabase = useSupabaseClient();
+
+const fetchWarehouses = async () => {
+    const { data, error } = await supabase.from('warehouses').select('*');
+    if (error) {
+        console.error('Error fetching warehouses:', error);
+    } else {
+        warehouses.value = data.map(v => ({
+            label: v.name,
+            value: v.code,
+        }));
+    }
+}
+
+onMounted(() => {
+    fetchWarehouses();
+})
 
 const levels = [
   { label: 'Level A&B', value: 'Level A&B' },
