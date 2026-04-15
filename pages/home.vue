@@ -118,6 +118,7 @@ const supabase = useSupabaseClient();
 const router = useRouter();
 
 const uoms = [
+  { label: 'PCS-PCS', value: 'PCS' },
   { label: 'BAG-BAG', value: 'BAG' },
   { label: 'BAL-BAL', value: 'BAL' },
   { label: 'BOX-BOX', value: 'BOX' },
@@ -134,7 +135,6 @@ const uoms = [
   { label: 'PAK-PACK', value: 'PACK' },
   { label: 'PALLET-PALLET', value: 'PALLET' },
   { label: 'PCH-POUCH', value: 'POUCH' },
-  { label: 'PCS-PCS', value: 'PCS' },
   { label: 'PKT-PAKET', value: 'PAKET' },
   { label: 'RCG-RENCENG', value: 'RENCENG' },
   { label: 'SAK-SAK', value: 'SAK' },
@@ -163,7 +163,7 @@ const form = ref({
   expired: null,
   qty: null,
   condition: '',
-  uom: '',
+  uom: 'PCS',
   uom_qty: 1,
   total_qty: null,
   username: user?.value?.email
@@ -250,7 +250,7 @@ const handleSubmit = async () => {
       form.value.expired = ''
       form.value.qty = ''
       form.value.condition = ''
-      form.value.uom = ''
+      form.value.uom = 'PCS'
       form.value.uom_qty = ''
       form.value.total_qty = ''
     }
@@ -308,7 +308,7 @@ const handleFinish = async () => {
       form.value.expired = ''
       form.value.qty = ''
       form.value.condition = ''
-      form.value.uom = ''
+      form.value.uom = 'PCS'
       form.value.uom_qty = ''
       form.value.total_qty = ''
     }
